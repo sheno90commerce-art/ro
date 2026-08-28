@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>إلى روان 🤍</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+
+    min-height: 100vh;
+
+    color: #f4f1f2;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,170,190,.10), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(170,130,180,.08), transparent 30%),
+        linear-gradient(135deg, #0b0d18, #17111c, #0b0d17);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   خلفية
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+
+    color: rgba(255,190,205,.13);
+
+    font-size: 22px;
+
+    animation: floatHeart linear infinite;
+}
+
+.heart:nth-child(1) {
+    left: 8%;
+    bottom: -30px;
+    animation-duration: 14s;
+}
+
+.heart:nth-child(2) {
+    left: 25%;
+    bottom: -30px;
+    animation-duration: 18s;
+    animation-delay: 3s;
+}
+
+.heart:nth-child(3) {
+    left: 47%;
+    bottom: -30px;
+    animation-duration: 15s;
+    animation-delay: 6s;
+}
+
+.heart:nth-child(4) {
+    left: 68%;
+    bottom: -30px;
+    animation-duration: 19s;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(5) {
+    left: 88%;
+    bottom: -30px;
+    animation-duration: 16s;
+    animation-delay: 5s;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   الشاشات
+========================= */
+
+.screen {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 22px;
+
+    opacity: 0;
+
+}
+
+.screen.active {
+
+    display: flex;
+
+    animation: screenIn .7s ease forwards;
+
+}
+
+@keyframes screenIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+.card {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 42px 30px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.055);
+
+    border: 1px solid rgba(255,255,255,.10);
+
+    border-radius: 28px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45);
+
+}
+
+
+/* =========================
+   النصوص
+========================= */
+
+.small {
+
+    color: #8e8d98;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+
+}
+
+h1 {
+
+    font-size: clamp(35px, 8vw, 58px);
+
+    font-weight: 400;
+
+    line-height: 1.35;
+
+    margin-bottom: 25px;
+
+}
+
+h2 {
+
+    font-size: 30px;
+
+    font-weight: 400;
+
+    margin-bottom: 25px;
+
+}
+
+p {
+
+    color: #c5c3c9;
+
+    font-size: 17px;
+
+    line-height: 2.15;
+
+}
+
+.highlight {
+
+    color: #eee9eb;
+
+    font-size: 20px;
+
+}
+
+
+/* =========================
+   الأزرار
+========================= */
+
+.btn {
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 15px 25px;
+
+    margin-top: 28px;
+
+    min-width: 180px;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.next {
+
+    background: #eee8e9;
+
+    color: #19171c;
+
+}
+
+.next:hover {
+
+    transform: translateY(-3px);
+
+    background: white;
+
+}
+
+
+/* =========================
+   كلمة السر
+========================= */
+
+.lock {
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+}
+
+input {
+
+    width: 100%;
+
+    padding: 16px;
+
+    margin-top: 20px;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(0,0,0,.20);
+
+    color: white;
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 16px;
+
+}
+
+.error {
+
+    display: none;
+
+    margin-top: 12px;
+
+    color: #df9eac;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================
+   السؤال
+========================= */
+
+.question {
+
+    font-size: 27px;
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+
+}
+
+.question-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+}
+
+.choice {
+
+    min-width: 205px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+}
+
+.yes {
+
+    border: none;
+
+    background: #eee8e9;
+
+    color: #19171c;
+
+}
+
+.no {
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(255,255,255,.05);
+
+    color: #ddd;
+
+}
+
+
+/* =========================
+   شكرًا
+========================= */
+
+.rose {
+
+    font-size: 70px;
+
+    animation:
+        pop .8s ease,
+        floatRose 2s ease-in-out infinite 1s;
+
+}
+
+@keyframes pop {
+
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+@keyframes floatRose {
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+
+/* =========================
+   الخصوصية
+========================= */
+
+.private {
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    color: #c8c4ca;
+
+    line-height: 2;
+
+}
+
+
+/* =========================
+   الرسالة الأخيرة
+========================= */
+
+.last-message {
+
+    text-align: right;
+
+}
+
+.last-message h2 {
+
+    text-align: center;
+
+}
+
+.last-message p {
+
+    margin-bottom: 15px;
+
+}
+
+.custom {
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.035);
+
+    color: #c8c4ca;
+
+    line-height: 2;
+
+}
+
+
+/* =========================
+   موبايل
+========================= */
+
+@media(max-width:600px) {
+
+    .card {
+
+        padding: 35px 21px;
+
+    }
+
+    p {
+
+        font-size: 16px;
+
+    }
+
+    .question {
+
+        font-size: 23px;
+
+    }
+
+    .choice {
+
+        width: 100%;
+
+    }
+
+}
+.creator-badge {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 9px 16px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 11px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+
+    z-index: 9999;
+
+    white-space: nowrap;
+}
+
+.creator-badge strong {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+</style>
+
+</head>
+
+
+<body>
+<div class="creator-badge">
+    صنع بواسطة <strong>شنودة عاطف</strong>
+</div>
+
+<!-- =========================
+     الخلفية
+========================= -->
+
+<div class="background">
+
+    <div class="heart">♡</div>
+    <div class="heart">♥</div>
+    <div class="heart">♡</div>
+    <div class="heart">♥</div>
+    <div class="heart">♡</div>
+
+</div>
+
+
+
+<!-- =========================
+     1 - LOGIN
+========================= -->
+
+<section
+    class="screen active"
+    id="login"
+>
+
+    <div class="card">
+
+        <div class="lock">
+            🔐
+        </div>
+
+        <h2>
+            الموقع ده ليكي
+        </h2>
+
+        <p>
+            فيه حاجة صغيرة عايز أقولهالك...
+            <br>
+            بس الأول كلمة السر 😂
+        </p>
+
+        <input
+            id="password"
+            type="password"
+            placeholder="كلمة السر"
+        >
+
+        <button
+            class="btn next"
+            onclick="login()"
+        >
+            دخول 🤍
+        </button>
+
+        <div
+            class="error"
+            id="error"
+        >
+            كلمة السر باسمك يا روان 😂
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     2 - الرسالة الأولى
+========================= -->
+
+<section
+    class="screen"
+    id="message1"
+>
+
+    <div class="card">
+
+        <div class="small">
+            أول حاجة
+        </div>
+
+        <h1>
+        
+            👇🏻👇🏻👇🏻
+        </h1>
+
+        <p>
+
+            أنا هروح المنصورة،
+
+            <br>
+
+            بس متعتبرهاش اني مش هاجي تاني ولا حاجة.
+
+            <br>
+
+            هي مجرد فترة دراسه وهتعدي.
+
+        </p>
+
+        <button
+            class="btn next"
+            onclick="goTo('message2')"
+        >
+            كمّلي 🤍
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     3 - الرسالة الثانية
+========================= -->
+
+<section
+    class="screen"
+    id="message2"
+>
+
+    <div class="card">
+
+        <div class="small">
+            وبالمناسبة...
+        </div>
+
+        <h2>
+            أنا مش سايب الشغل
+        </h2>
+
+        <p>
+
+            أنا هروح المنصورة،
+
+            <br><br>
+
+            بس ده مش معناه إني مش هبقى
+            شغال في الشركة.
+
+            <br><br>
+
+            لا، أنا شغال عادي،
+            بس من البيت.
+
+        </p>
+
+        <button
+            class="btn next"
+            onclick="goTo('message3')"
+        >
+            تمام 😂
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     4 - الرسالة الثالثة
+========================= -->
+
+<section
+    class="screen"
+    id="message3"
+>
+
+    <div class="card">
+
+        <div class="small">
+            والأهم
+        </div>
+
+        <h2>
+            مش هنختفي يعني 😂
+        </h2>
+
+        <p>
+
+            هنفضل نتكلم عادي
+            على ماسنجر أو واتساب.
+
+            <br><br>
+
+            يعني التواصل مفيهوش مشكله
+            <br>
+            <span class="highlight">
+              كملي وهتعرفي ليه عامل الموقع ده
+            </span>
+
+        </p>
+
+        <button
+            class="btn next"
+            onclick="goTo('question')"
+        >
+            طب سؤال بقى 😂
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     5 - السؤال
+========================= -->
+
+<section
+    class="screen"
+    id="question"
+>
+
+    <div class="card">
+
+        <div class="question">
+
+            هل هيكون كلامنا
+            على قد الشغل؟
+
+            <br><br>
+
+            ولا عادي بره الشغل؟ 😂
+
+        </div>
+
+
+        <div class="question-buttons">
+
+            <button
+                class="choice no"
+                id="noButton"
+            >
+                لا — على قد الشغل
+            </button>
+
+
+            <button
+                class="choice yes"
+                onclick="answerYes()"
+            >
+                آه — عادي بره الشغل
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     6 - شكرًا
+========================= -->
+
+<section
+    class="screen"
+    id="thanks"
+>
+
+    <div class="card">
+
+        <div class="rose">
+            🌹
+        </div>
+
+        <h2>
+            شكرًا 😂🤍
+        </h2>
+
+        <p>
+            كنت مستني الإجابة دي.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     7 - الخصوصية
+========================= -->
+
+<section
+    class="screen"
+    id="privacy"
+>
+
+    <div class="card">
+
+        <div class="small">
+            حاجة أخيرة قبل ما نخلص
+        </div>
+
+        <h2>
+            خلي الكلام ده بينا 🤍
+        </h2>
+
+        <p>
+
+            عايزك تعرفي إن مينفعش تعرفي
+            حد بكلامنا ده أو حتى الموقع ده خالص.
+
+        </p>
+
+
+        <div class="private">
+
+            أنا اللي ممكن أتضر لو الموضوع
+            اتعرف أو انتشر.
+
+            <br><br>
+
+            وأنا عارف إن ممكن متكونيش قاصدة
+            أي حاجة وحشة،
+
+            <br>
+
+            بس حاولي محدش يعرف خالص.
+
+        </div>
+
+
+        <button
+            class="btn next"
+            onclick="goTo('lastButton')"
+        >
+            فهمت 🤍
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     8 - زر الرسالة الأخيرة
+========================= -->
+
+<section
+    class="screen"
+    id="lastButton"
+>
+
+    <div class="card">
+
+        <div style="font-size:55px;">
+            🤍
+        </div>
+
+        <h2>
+            ولسه في حاجة أخيرة
+        </h2>
+
+        <p>
+            قبل ما تقفلي الموقع...
+        </p>
+
+        <button
+            class="btn next"
+            onclick="goTo('lastMessage')"
+        >
+            الرسالة الأخيرة
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     9 - الرسالة الأخيرة
+========================= -->
+
+<section
+    class="screen"
+    id="lastMessage"
+>
+
+    <div class="card last-message">
+
+        <h2>
+            الرسالة الأخيرة 🤍
+        </h2>
+
+        <p>
+
+            انا عامل الموقع ده عشان بدل ما اقولك واتساب ابعتلك الموقع يعرفك كل ده 
+
+        </p>
+<br>
+
+        <p>
+
+            وهبقى أجي إجازة نص السنة
+            وآخر السنة.
+
+        </p>
+
+        <p>
+
+            فمتعتبرهاش اني صفيت...
+
+            <br>
+
+            دي بس فترة دراسه وهتعدي. 🤍
+
+        </p>
+
+
+        <!-- =====================================
+             اكتب هنا أي كلام إضافي
+        ====================================== -->
+
+        <div class="custom">
+
+            <strong>
+                رسالة اخرى:
+            </strong>
+
+            <br><br>
+
+            <!-- ✏️ اكتب رسالتك هنا -->
+
+                اشوفك على خير + محدش خالص يعرف اي حاجه وانا ذات نفسي معرفتش حد
+
+        </div>
+
+
+        <p
+            style="
+            text-align:center;
+            margin-top:30px;
+            color:#88858e;
+            "
+        >
+            أشوفك قريب يا روان 😂🤍
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+
+/* =========================
+   الانتقال بين الشاشات
+========================= */
+
+function goTo(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+}
+
+
+
+/* =========================
+   كلمة السر
+========================= */
+
+function login() {
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("error");
+
+
+    if(password === "روان") {
+
+        goTo("message1");
+
+    } else {
+
+        error.style.display = "block";
+
+        document
+            .getElementById("password")
+            .value = "";
+
+    }
+
+}
+
+
+
+/* =========================
+   Enter
+========================= */
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if(event.key === "Enter") {
+
+                login();
+
+            }
+
+        }
+    );
+
+
+
+/* =========================
+   زر لا - يهرب 😂
+========================= */
+
+const noButton =
+    document.getElementById("noButton");
+
+
+function escapeButton() {
+
+    const margin = 15;
+
+
+    const maxX =
+        window.innerWidth -
+        noButton.offsetWidth -
+        margin;
+
+
+    const maxY =
+        window.innerHeight -
+        noButton.offsetHeight -
+        margin;
+
+
+    const x =
+        Math.max(
+            margin,
+            Math.random() * maxX
+        );
+
+
+    const y =
+        Math.max(
+            margin,
+            Math.random() * maxY
+        );
+
+
+    noButton.style.position = "fixed";
+
+    noButton.style.left = x + "px";
+
+    noButton.style.top = y + "px";
+
+    noButton.style.zIndex = "9999";
+
+}
+
+
+/* كمبيوتر */
+
+noButton.addEventListener(
+    "mouseenter",
+    escapeButton
+);
+
+
+/* موبايل */
+
+noButton.addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        escapeButton();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+
+/* =========================
+   الإجابة
+========================= */
+
+function answerYes() {
+
+    goTo("thanks");
+
+
+    setTimeout(
+        function() {
+
+            goTo("privacy");
+
+        },
+        3000
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
