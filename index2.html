@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>روان ❤️</title>
+
+    <!-- EmailJS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                "Tahoma",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #633d61 0%,
+                    #352038 45%,
+                    #160d1d 100%
+                );
+
+            color: white;
+
+            overflow-x: hidden;
+        }
+
+
+        /* نجوم الخلفية */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.35;
+
+            background-image:
+
+                radial-gradient(
+                    circle,
+                    white 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            z-index: 0;
+        }
+
+
+        /* =========================
+           الشاشات
+        ========================= */
+
+        .screen {
+
+            display: none;
+
+            position: relative;
+
+            z-index: 1;
+
+            min-height: 100vh;
+
+            width: 100%;
+
+            padding:
+                30px
+                18px;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+
+        .screen.active {
+
+            display: flex;
+
+            animation:
+                fadeIn 0.6s ease;
+        }
+
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           الكروت
+        ========================= */
+
+        .card {
+
+            width: 100%;
+
+            max-width: 620px;
+
+            padding: 32px 22px;
+
+            border-radius: 28px;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.20);
+
+            box-shadow:
+                0 20px 60px
+                rgba(0,0,0,0.35);
+
+            backdrop-filter:
+                blur(15px);
+
+            -webkit-backdrop-filter:
+                blur(15px);
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           العناوين
+        ========================= */
+
+        h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 15px;
+
+            line-height: 1.4;
+        }
+
+
+        h2 {
+
+            font-size: 27px;
+
+            margin-bottom: 20px;
+
+            line-height: 1.6;
+        }
+
+
+        p {
+
+            font-size: 18px;
+
+            line-height: 2;
+
+            color:
+                rgba(255,255,255,0.90);
+        }
+
+
+        .heart {
+
+            font-size: 65px;
+
+            display: block;
+
+            margin-bottom: 10px;
+
+            animation:
+                heartbeat 1.5s infinite;
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+            }
+        }
+
+
+        /* =========================
+           المدخل
+        ========================= */
+
+        .password-box {
+
+            margin-top: 25px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            border: none;
+
+            outline: none;
+
+            padding: 16px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.25);
+
+            color: white;
+
+            font-size: 18px;
+
+            text-align: center;
+        }
+
+
+        input::placeholder {
+
+            color:
+                rgba(255,255,255,0.60);
+        }
+
+
+        /* =========================
+           الأزرار
+        ========================= */
+
+        .btn {
+
+            border: none;
+
+            outline: none;
+
+            cursor: pointer;
+
+            padding:
+                15px
+                28px;
+
+            border-radius: 18px;
+
+            font-size: 18px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #d95c91,
+                    #8e4ca8
+                );
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.25);
+
+            transition:
+                transform 0.2s,
+                opacity 0.2s;
+
+            margin-top: 18px;
+        }
+
+
+        .btn:hover {
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .btn:active {
+
+            transform:
+                scale(0.96);
+        }
+
+
+        .error {
+
+            display: none;
+
+            color: #ffb5b5;
+
+            margin-top: 15px;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           صفحة المقدمة
+        ========================= */
+
+        .intro-text {
+
+            margin:
+                20px 0;
+        }
+
+
+        .small {
+
+            font-size: 15px;
+
+            opacity: 0.75;
+        }
+
+
+        /* =========================
+           الأسئلة
+        ========================= */
+
+        .questions {
+
+            width: 100%;
+
+            max-width: 700px;
+
+            padding-top: 30px;
+
+            padding-bottom: 50px;
+        }
+
+
+        .question {
+
+            margin-bottom: 32px;
+
+            text-align: right;
+        }
+
+
+        .question label {
+
+            display: block;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 150px;
+
+            resize: vertical;
+
+            outline: none;
+
+            border-radius: 22px;
+
+            padding: 20px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.22);
+
+            background:
+                rgba(255,255,255,0.10);
+
+            color: white;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            font-family: inherit;
+
+            backdrop-filter:
+                blur(10px);
+
+            -webkit-backdrop-filter:
+                blur(10px);
+        }
+
+
+        textarea::placeholder {
+
+            color:
+                rgba(255,255,255,0.55);
+        }
+
+
+        textarea:focus,
+        input:focus {
+
+            border-color:
+                rgba(255,255,255,0.55);
+
+            background:
+                rgba(255,255,255,0.14);
+        }
+
+
+        .send-btn {
+
+            width: 100%;
+
+            margin-top: 5px;
+
+            font-size: 20px;
+
+            padding: 18px;
+        }
+
+
+        /* =========================
+           زر لا
+        ========================= */
+
+        .answer-buttons {
+
+            position: relative;
+
+            min-height: 90px;
+
+            margin-top: 20px;
+        }
+
+
+        #noButton {
+
+            position: relative;
+        }
+
+
+        /* =========================
+           شاشة الشكر
+        ========================= */
+
+        .thanks-heart {
+
+            font-size: 80px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .loading {
+
+            margin-top: 15px;
+
+            opacity: 0.65;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           الرسالة النهائية
+        ========================= */
+
+        .final-message {
+
+            font-size: 20px;
+
+            line-height: 2.1;
+
+            margin:
+                20px 0;
+        }
+
+
+        .whatsapp {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                #25D366;
+
+            padding:
+                14px
+                24px;
+
+            border-radius: 16px;
+
+            font-size: 18px;
+
+            margin-top: 10px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.25);
+        }
+
+
+        .footer {
+
+            margin-top: 25px;
+
+            font-size: 13px;
+
+            opacity: 0.55;
+        }
+
+
+        /* =========================
+           الموبايل
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .screen {
+
+                padding:
+                    20px
+                    12px;
+            }
+
+
+            .card {
+
+                padding:
+                    28px
+                    17px;
+
+                border-radius: 24px;
+            }
+
+
+            h1 {
+
+                font-size: 31px;
+            }
+
+
+            h2 {
+
+                font-size: 23px;
+            }
+
+
+            p {
+
+                font-size: 16px;
+            }
+
+
+            .question label {
+
+                font-size: 18px;
+            }
+
+
+            textarea {
+
+                min-height: 140px;
+
+                font-size: 16px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         شاشة كلمة السر
+    ================================================= -->
+
+    <section
+        id="login"
+        class="screen active"
+    >
+
+        <div class="card">
+
+            <span class="heart">
+                ✨
+            </span>
+
+            <h1>
+                كلمة السر اسمك
+            </h1>
+
+            <p>
+                في اسأله صغيره عايزك تجاوبي عليها...
+            </p>
+
+            <p class="small">
+                بس الأول لازم تدخلي كلمة السر 😂
+            </p>
+
+
+            <div class="password-box">
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="كلمة السر"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    class="btn"
+                    onclick="login()"
+                >
+                    دخول ❤️
+                </button>
+
+
+                <div
+                    id="error"
+                    class="error"
+                >
+                    كلمة السر غلط 😂 جربي تاني
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         المقدمة
+    ================================================= -->
+
+    <section
+        id="message1"
+        class="screen"
+    >
+
+        <div class="card">
+
+            <span class="heart">
+                💌
+            </span>
+
+            <h2>
+                عندي كام سؤال ليكي
+            </h2>
+
+            <p class="intro-text">
+                جاوبي براحتك ومن غير تفكير كتير 😂
+                <br>
+                مفيش إجابة صح أو غلط.
+            </p>
+
+            <button
+                class="btn"
+                onclick="goTo('questionScreen')"
+            >
+                يلا نبدأ ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         شاشة السؤال الأول / الاختيار
+    ================================================= -->
+
+    <section
+        id="questionScreen"
+        class="screen"
+    >
+
+        <div class="card">
+
+            <span class="heart">
+                ❤️
+            </span>
+
+            <h2>
+                قبل ما نبدأ...
+            </h2>
+
+            <p>
+                مستعدة تجاوبيني بصراحة؟
+            </p>
+
+
+            <div class="answer-buttons">
+
+                <button
+                    class="btn"
+                    onclick="goTo('questionsScreen')"
+                >
+                    أيوه ❤️
+                </button>
+
+
+                <button
+                    id="noButton"
+                    class="btn"
+                    onclick="escapeButton()"
+                >
+                    لا 😂
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         الأسئلة
+    ================================================= -->
+
+    <section
+        id="questionsScreen"
+        class="screen"
+    >
+
+        <div class="questions">
+
+            <div class="card">
+
+                <span class="heart">
+                    📝
+                </span>
+
+                <h2>
+                    جاوبي براحتك ومن غير تفكير كتير 😂
+                </h2>
+
+
+                <!-- السؤال 1 -->
+
+                <div class="question">
+
+                    <label for="q1">
+                        1.   ايه اكتر حاجه وحشه فيا   ؟
+                    </label>
+
+                    <textarea
+                        id="q1"
+                        placeholder="اكتبي إجابتك هنا..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- السؤال 2 -->
+
+                <div class="question">
+
+                    <label for="q2">
+                        2. إيه أكتر موقف حصل بينا وفضل في بالك؟
+                    </label>
+
+                    <textarea
+                        id="q2"
+                        placeholder="اكتبي إجابتك هنا..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- السؤال 3 -->
+
+                <div class="question">
+
+                    <label for="q3">
+                        3. لو هتوصفيني  بكلمة، تختاري إيه؟
+                    </label>
+
+                    <textarea
+                        id="q3"
+                        placeholder="كلمة أو جملة صغيرة..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- السؤال 4 -->
+
+                <div class="question">
+
+                    <label for="q4">
+                        4.  هل شايفاني مزودها ولا ايه بظبط    ؟
+                    </label>
+
+                    <textarea
+                        id="q4"
+                        placeholder="اكتبي إجابتك هنا..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- السؤال 5 -->
+
+                <div class="question">
+
+                    <label for="q5">
+                        5.   هل ابطل انشاء مواقع زاي دي     ؟
+                    </label>
+
+                    <textarea
+                        id="q5"
+                        placeholder="  اكتبي هنا"
+                    ></textarea>
+
+                </div>
+
+
+                <!-- زر الإرسال -->
+
+                <button
+                    id="sendButton"
+                    class="btn send-btn"
+                    onclick="sendAnswers()"
+                >
+                    إرسال الإجابات ❤️
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         شاشة بعد الإرسال
+    ================================================= -->
+
+    <section
+        id="thanks"
+        class="screen"
+    >
+
+        <div class="card">
+
+            <div class="thanks-heart">
+                ❤️
+            </div>
+
+            <h2>
+                وصلت إجاباتك
+            </h2>
+
+            <p>
+                استني بس ثانية...
+            </p>
+
+            <div class="loading">
+                عندي حاجة أخيرة ليكي 👀
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         الرسالة النهائية
+    ================================================= -->
+
+    <section
+        id="privacy"
+        class="screen"
+    >
+
+        <div class="card">
+
+            <span class="heart">
+                🎁
+            </span>
+
+            <h2>
+                مفاجأة ❤️
+            </h2>
+
+
+            <p class="final-message">
+
+                الموقع ده حبيت أعملهولك مفاجأة ❤️
+                <br>
+                إيه رأيك فيه؟
+                <br><br>
+
+                ابعتيلي رأيك واتساب 👇
+
+            </p>
+
+
+            <a
+                class="whatsapp"
+                href="https://wa.me/201220250174"
+                target="_blank"
+            >
+                💌 واتساب
+            </a>
+
+
+            <p class="final-message">
+
+                ولو حابة أعملك واحد تديه هدية
+                لصاحبتك أو غيره قوليلي وهعمله ❤️
+
+            </p>
+
+
+            <div class="footer">
+                  صانع الموقع المبرمج شنودة عاطف ✨
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         JavaScript
+    ================================================= -->
+
+    <script>
+
+        /* =========================================
+           بيانات EmailJS
+        ========================================= */
+
+        const EMAILJS_PUBLIC_KEY =
+            "gaea5HDON8jVJLmjn";
+
+        const EMAILJS_SERVICE_ID =
+            "service_a05oowe";
+
+        const EMAILJS_TEMPLATE_ID =
+            "template_3wy656f";
+
+
+        /* =========================================
+           تشغيل EmailJS
+        ========================================= */
+
+        emailjs.init({
+            publicKey: EMAILJS_PUBLIC_KEY
+        });
+
+
+        /* =========================================
+           الانتقال بين الشاشات
+        ========================================= */
+
+        function goTo(id) {
+
+            document
+                .querySelectorAll(".screen")
+                .forEach(screen => {
+
+                    screen.classList.remove("active");
+
+                });
+
+
+            const target =
+                document.getElementById(id);
+
+
+            if (target) {
+
+                target.classList.add("active");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+
+        }
+
+
+        /* =========================================
+           تسجيل الدخول
+        ========================================= */
+
+        function login() {
+
+            const password =
+                document
+                .getElementById("password")
+                .value
+                .trim();
+
+
+            const error =
+                document.getElementById("error");
+
+
+            if (password === "روان") {
+
+                error.style.display = "none";
+
+                goTo("message1");
+
+            }
+
+            else {
+
+                error.style.display = "block";
+
+                document
+                    .getElementById("password")
+                    .value = "";
+
+            }
+
+        }
+
+
+        /* =========================================
+           Enter
+        ========================================= */
+
+        document
+            .getElementById("password")
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (event.key === "Enter") {
+
+                        login();
+
+                    }
+
+                }
+            );
+
+
+        /* =========================================
+           زر لا يهرب 😂
+        ========================================= */
+
+        const noButton =
+            document.getElementById("noButton");
+
+
+        function escapeButton() {
+
+            if (!noButton) return;
+
+
+            const margin = 15;
+
+
+            const buttonWidth =
+                noButton.offsetWidth;
+
+
+            const buttonHeight =
+                noButton.offsetHeight;
+
+
+            const maxX =
+                Math.max(
+                    margin,
+                    window.innerWidth -
+                    buttonWidth -
+                    margin
+                );
+
+
+            const maxY =
+                Math.max(
+                    margin,
+                    window.innerHeight -
+                    buttonHeight -
+                    margin
+                );
+
+
+            const x =
+                Math.floor(
+                    Math.random() *
+                    (maxX - margin + 1)
+                ) + margin;
+
+
+            const y =
+                Math.floor(
+                    Math.random() *
+                    (maxY - margin + 1)
+                ) + margin;
+
+
+            noButton.style.position =
+                "fixed";
+
+
+            noButton.style.left =
+                x + "px";
+
+
+            noButton.style.top =
+                y + "px";
+
+
+            noButton.style.zIndex =
+                "99999";
+        }
+
+
+        /* كمبيوتر */
+
+        noButton.addEventListener(
+            "mouseenter",
+            escapeButton
+        );
+
+
+        /* موبايل */
+
+        noButton.addEventListener(
+            "touchstart",
+            function(event) {
+
+                event.preventDefault();
+
+                escapeButton();
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        /* =========================================
+           إرسال الإجابات
+        ========================================= */
+
+        async function sendAnswers() {
+
+            const q1 =
+                document
+                .getElementById("q1")
+                .value
+                .trim();
+
+
+            const q2 =
+                document
+                .getElementById("q2")
+                .value
+                .trim();
+
+
+            const q3 =
+                document
+                .getElementById("q3")
+                .value
+                .trim();
+
+
+            const q4 =
+                document
+                .getElementById("q4")
+                .value
+                .trim();
+
+
+            const q5 =
+                document
+                .getElementById("q5")
+                .value
+                .trim();
+
+
+            /* =====================================
+               التأكد من الإجابات
+            ===================================== */
+
+            if (
+                !q1 ||
+                !q2 ||
+                !q3 ||
+                !q4 ||
+                !q5
+            ) {
+
+                alert(
+                    "جاوبي على كل الأسئلة الأول ❤️"
+                );
+
+                return;
+            }
+
+
+            /* =====================================
+               منع الضغط المتكرر
+            ===================================== */
+
+            const sendButton =
+                document
+                .getElementById("sendButton");
+
+
+            sendButton.disabled = true;
+
+            sendButton.innerText =
+                "ثواني... ❤️";
+
+
+            /* =====================================
+               بيانات EmailJS
+            ===================================== */
+
+            const templateParams = {
+
+                q1: q1,
+
+                q2: q2,
+
+                q3: q3,
+
+                q4: q4,
+
+                q5: q5,
+
+                time:
+                    new Date()
+                    .toLocaleString("ar-EG")
+
+            };
+
+
+            try {
+
+                /* إرسال الإجابات */
+
+                await emailjs.send(
+                    EMAILJS_SERVICE_ID,
+                    EMAILJS_TEMPLATE_ID,
+                    templateParams
+                );
+
+
+                /*
+                 * لا نعرض لها أي رسالة عن EmailJS.
+                 * بعد نجاح الإرسال ننتقل للرسالة.
+                 */
+
+                goTo("thanks");
+
+
+                setTimeout(
+                    function() {
+
+                        goTo("privacy");
+
+                    },
+                    3000
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "EmailJS Error:",
+                    error
+                );
+
+
+                sendButton.disabled =
+                    false;
+
+
+                sendButton.innerText =
+                    "إرسال الإجابات ❤️";
+
+
+                alert(
+                    "حصلت مشكلة بسيطة، جربي إرسال الإجابات مرة تانية ❤️"
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
